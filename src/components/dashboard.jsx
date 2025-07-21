@@ -1,5 +1,6 @@
 import React from "react";
 import "./dashboard.css";
+import profilePic from "../assets/profile.jpg"; // Adjust path as needed
 
 const datasets = [
   { title: "Budget of Department", updated: "Jun 29, 2025", columns: 6 },
@@ -35,7 +36,10 @@ export default function Dashboard() {
     <div className="dash-root">
       <aside className="dash-sidebar">
         <div className="profile-box">
-          <div className="profile-photo" />
+  
+          <div className="profile-img-wrapper">
+            <img src={profilePic} alt="Profile" className="profile-img" />
+          </div>
           <div className="profile-name">SAJAL</div>
           <div className="profile-mail">sajaldharm7f8@gmail.com</div>
         </div>
@@ -59,7 +63,9 @@ export default function Dashboard() {
             <span className="icon">&#128196;</span> Data catalogue
           </a>
         </nav>
-        <button className="logout-btn"><span className="icon">&#8592;</span> LOG OUT</button>
+        <button className="logout-btn">
+          <span className="icon">&#8592;</span> LOG OUT
+        </button>
       </aside>
       <main className="dash-main">
         <header className="dash-header">
