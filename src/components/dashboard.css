@@ -79,7 +79,11 @@
   border-radius: 22px 0 0 22px;
   transition: background 0.13s, color 0.13s;
 }
-.sidebar-nav a.active,
+.sidebar-nav .active {
+  background: #eae6ff;
+  color: #3a278e;
+  border-left: 4px solid #a589e9;
+}
 .sidebar-nav a:hover {
   background: var(--sidebar-dark);
   color: #fff;

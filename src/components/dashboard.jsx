@@ -1,7 +1,9 @@
 import React from "react";
 import "./dashboard.css";
-import profilePic from "../assets/profile.jpg"; // Adjust path as needed
+import profilePic from "../assets/profile.jpg";
+import { Link, useLocation } from "react-router-dom";
 
+// Fake dataset data
 const datasets = [
   { title: "Budget of Department", updated: "Jun 29, 2025", columns: 6 },
   { title: "Marketing Performance", updated: "Jun 29, 2025", columns: 7 },
@@ -31,31 +33,38 @@ const datasets = [
   },
 ];
 
-export default function Dashboard() {
+export default function Dashboard({ onLogout }) {
+  const location = useLocation();
+  // Fallback to empty if onLogout is not passed:
+  const safeLogout = onLogout || (() => {});
+
   return (
     <div className="dash-root">
       <aside className="dash-sidebar">
         <div className="profile-box">
-  
           <div className="profile-img-wrapper">
             <img src={profilePic} alt="Profile" className="profile-img" />
           </div>
           <div className="profile-name">SAJAL</div>
           <div className="profile-mail">sajaldharm7f8@gmail.com</div>
         </div>
+
         <nav className="sidebar-nav">
-          <a className="active" href="#">
+          <Link className={location.pathname === "/" ? "active" : ""} to="/">
             <span className="icon">&#8962;</span> Dashboard
-          </a>
+          </Link>
           <a href="#">
             <span className="icon">&#9733;</span> Bookmarks
           </a>
           <a href="#">
             <span className="icon">&#128276;</span> Subscriptions
           </a>
-          <a href="#">
+          <Link
+            className={location.pathname === "/codespace" ? "active" : ""}
+            to="/codespace"
+          >
             <span className="icon">&#60;&#47;&#62;</span> Code
-          </a>
+          </Link>
           <a href="#">
             <span className="icon">&#8681;</span> Downloads
           </a>
@@ -63,7 +72,7 @@ export default function Dashboard() {
             <span className="icon">&#128196;</span> Data catalogue
           </a>
         </nav>
-        <button className="logout-btn">
+        <button className="logout-btn" onClick={safeLogout}>
           <span className="icon">&#8592;</span> LOG OUT
         </button>
       </aside>
@@ -165,7 +174,9 @@ export default function Dashboard() {
                   strokeDasharray={`${2 * Math.PI * 47 * 0.135} ${
                     2 * Math.PI * 47 * (1 - 0.135)
                   }`}
-                  strokeDashoffset={2 * Math.PI * 47 * (0.554 + 0.311 + 0.095)}
+                  strokeDashoffset={
+                    2 * Math.PI * 47 * (0.554 + 0.311 + 0.095)
+                  }
                   strokeLinecap="round"
                   style={{
                     transform: "rotate(-90deg)",
